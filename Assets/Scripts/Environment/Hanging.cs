@@ -16,15 +16,16 @@ public class Hanging : MonoBehaviour {
     {
         if(other.tag == "Ledge")
         {
-            rb2d.gravityScale = 0;
+            rb2d.isKinematic = true;
+            playerMovement.falling = false;
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.tag == "Ledge")
         {
-            rb2d.gravityScale = 1;
+            rb2d.isKinematic = false;
+            playerMovement.falling = true;
         }
     }
-
 }
