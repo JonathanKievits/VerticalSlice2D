@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (other.tag == "Danger")
         {
-            if (currentHealth > 1)
+            if (playerHealth > 1)
             {
                 currentHealth -= 20;
             }
@@ -29,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+
     }
 
     void Update()
