@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         if(other.tag == "Danger")
         {
-            if (playerHealth > 0)
+            if (playerHealth > 1)
             {
                 playerHealth -= 25f;
             }
