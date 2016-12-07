@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
 
-    [HideInInspector]public float playerHealth;
+    [HideInInspector]
+    public float currentHealth;
 
-	void Start ()
+    void Start()
     {
-        playerHealth = 100f;
-	}
+        currentHealth = 100;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,17 +18,27 @@ public class PlayerHealth : MonoBehaviour {
         {
             Destroy(other.gameObject);
         }
-        if(other.tag == "Danger")
+        if (other.tag == "Danger")
         {
-            if (playerHealth > 0)
+            if (currentHealth > 1)
             {
-                playerHealth -= 25f;
+                currentHealth -= 20;
             }
-            else if(playerHealth <= 0)
+            else if (currentHealth < 20)
             {
-                Destroy(gameObject);
+                Destroy(this.gameObject);
             }
         }
+    }
+
+    void Update()
+    {
+        if (currentHealth > 100)
+        {
+            currentHealth = 100f;
+        }
+
+       // Debug.Log(currentHealth);
 
     }
 }

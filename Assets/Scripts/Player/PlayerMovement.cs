@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed;
     private float jumpHeight;
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     private float movex;
     [HideInInspector]public bool falling;
     
