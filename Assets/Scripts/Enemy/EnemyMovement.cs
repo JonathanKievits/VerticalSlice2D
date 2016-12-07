@@ -9,10 +9,10 @@ public class EnemyMovement : MonoBehaviour {
 
     void Start()
     {
-        movex = 3f;
+        movex = 2f;
         rb2d = GetComponent<Rigidbody2D>();
 
-        coroutine = WaitAndPrint(5.0f);
+        coroutine = WaitAndPrint(1.5f);
         StartCoroutine(coroutine);
     }
 

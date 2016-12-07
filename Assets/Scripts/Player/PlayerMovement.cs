@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpHeight;
     public Rigidbody2D rb2d;
     private float movex;
+    [HideInInspector]public float direction;
     [HideInInspector]public bool falling;
     
     void Start()
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         jumpHeight = 7f;
         movex = 0f;
         falling = false;
+        direction = 1f;
     }
 
     void Update()
@@ -30,6 +32,14 @@ public class PlayerMovement : MonoBehaviour
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpHeight);
                 falling = true;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            direction = -1;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            direction = 1;
         }
     }
 
