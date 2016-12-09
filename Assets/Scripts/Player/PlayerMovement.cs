@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        moveSpeed = 10f;
+        moveSpeed = 5f;
         jumpHeight = 7f;
         movex = 0f;
         falling = false;
