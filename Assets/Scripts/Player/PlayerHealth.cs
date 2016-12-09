@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
@@ -20,13 +21,15 @@ public class PlayerHealth : MonoBehaviour
         }
         if (other.tag == "Danger")
         {
-            if (currentHealth > 1)
+            if ( currentHealth > 1)
             {
                 currentHealth -= 20;
             }
             else if (currentHealth < 20)
             {
                 Destroy(this.gameObject);
+                SceneManager.LoadScene(0);
+
             }
         }
     }
