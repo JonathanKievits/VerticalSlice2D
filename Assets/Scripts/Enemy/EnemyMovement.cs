@@ -5,13 +5,15 @@ public class EnemyMovement : MonoBehaviour {
 
     private float movex;
     private Rigidbody2D rb2d;
-    private IEnumerator coroutine;  
+    private IEnumerator coroutine;
+    [HideInInspector]
+    public float direction;
 
     void Start()
     {
         movex = 2f;
         rb2d = GetComponent<Rigidbody2D>();
-
+        direction = 1f;
         coroutine = WaitAndPrint(1.5f);
         StartCoroutine(coroutine);
     }
@@ -27,6 +29,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             yield return new WaitForSeconds(waitTime);
             movex *= -1;
+            direction *= -1;
         }
     }
 
