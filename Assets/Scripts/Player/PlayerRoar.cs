@@ -5,13 +5,16 @@ public class PlayerRoar : MonoBehaviour
 {
     [HideInInspector]
     public float currentCharge;
+    [HideInInspector]
+    public bool roaring;
 
     private int regeneration;
     private int maxCharge;
-
+   
     
 	void Start ()
     {
+        roaring = false;
         regeneration = 5;
         maxCharge = 100;
         currentCharge = 100;
@@ -24,6 +27,7 @@ public class PlayerRoar : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                roaring = true;
                 currentCharge = 0;
             }
         }
