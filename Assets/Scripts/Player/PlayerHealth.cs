@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
 
     [HideInInspector]
     public float currentHealth;
+    [HideInInspector]
+    public bool hurting = false;
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
             if (currentHealth > 1)
             {
                 currentHealth -= 20;
+                hurting = true;
             }
             else if (currentHealth < 20)
             {

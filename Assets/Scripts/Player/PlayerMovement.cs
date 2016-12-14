@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     private float moveSpeed;
     private float jumpHeight;
     public Rigidbody2D rb2d;
@@ -14,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         moveSpeed = 5f;
-        jumpHeight = 7f;
+        jumpHeight = 5f;
         movex = 0f;
         falling = false;
     }
@@ -30,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpHeight);
                 falling = true;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.localScale = new Vector3(-1,1,1);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.localScale = new Vector3(1,1,1);
         }
     }
 
