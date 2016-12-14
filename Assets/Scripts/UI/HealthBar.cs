@@ -4,8 +4,10 @@ using System.Collections;
 
 public class HealthBar : MonoBehaviour
 {
-    public GameObject player;
-    public Slider slider;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private Slider slider;
 
     private PlayerHealth playerHealth;
 

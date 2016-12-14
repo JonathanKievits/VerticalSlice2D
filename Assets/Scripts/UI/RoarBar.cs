@@ -4,8 +4,10 @@ using System.Collections;
 
 public class RoarBar : MonoBehaviour
 {
-    public GameObject playert;
-    public Slider slidert;
+    [SerializeField]
+    private GameObject playert;
+    [SerializeField]
+    private Slider slidert;
 
     private PlayerRoar playerRoar;
 
