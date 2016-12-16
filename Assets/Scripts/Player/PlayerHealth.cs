@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.tag == "Border")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         if (other.tag == "Enemy")
         {
@@ -29,12 +29,13 @@ public class PlayerHealth : MonoBehaviour
         {
             if ( currentHealth >= 30)
             {
+                StartCoroutine("HurtingInAction");
                 currentHealth -= 25;
                 hurting = true;
             }
             else if (currentHealth <= 30)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
         }
     }
@@ -46,5 +47,12 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 100f;
         }
 
+    }
+
+    IEnumerator HurtingInAction()
+    {
+        yield return new WaitForSeconds(4f);
+        hurting = false;
+        StopCoroutine("HurtingInAction");
     }
 }

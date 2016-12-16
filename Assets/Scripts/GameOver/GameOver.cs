@@ -21,7 +21,7 @@ public class GameOver : MonoBehaviour {
     {
         if (!death.isPlaying)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
 
        

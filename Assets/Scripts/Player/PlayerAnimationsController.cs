@@ -9,46 +9,49 @@ public class PlayerAnimationsController : MonoBehaviour
     private PlayerMovement playerMovement;
     private Hanging hanging;
     private Animator anim;
+    private Rigidbody2D rb2d;
 
-    void Awake()
+    private void Awake()
     {
         playerRoar = GetComponent<PlayerRoar>();
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
         hanging = GetComponent<Hanging>();
         anim = GetComponent<Animator>();
+
+        rb2d = GetComponent<Rigidbody2D>();
+
+        idle();
+    }
+
+    private void idle()
+    {
+        anim.SetBool("Hurt", false);
+        anim.SetBool("Hanging", false);
+        anim.SetBool("Roar", false);
+        anim.SetBool("SJump", false);
+        anim.SetBool("RJump", false);
+        anim.SetBool("LJump", false);
+        anim.SetBool("Idle", true);
     }
 
     void Update()
     {
-        Debug.Log(playerMovement.jumping);
+        anim.SetFloat("Running", Mathf.Abs(rb2d.velocity.x));
+
         if (playerRoar.roaring == true)
         {
             anim.SetBool("Roar", true);
-            playerRoar.roaring = false;
         }
-        else
+
         if (playerHealth.hurting == true)
         {
             anim.SetBool("Hurt", true);
-            playerHealth.hurting = false;
         }
-        else
-        if (playerMovement.running == true && hanging.hangingOn == false && playerMovement.jumping == false)
+
+        if (playerMovement.running == false && playerRoar.roaring == false && hanging.hangingOn == false)
         {
-            anim.SetBool("Running", true);
-        }
-        else 
-        if(playerMovement.running == false && playerRoar.roaring == false && hanging.hangingOn == false)
-        {
-            anim.SetBool("Hurt", false);
-            anim.SetBool("Hanging", false);
-            anim.SetBool("Roar", false);
-            anim.SetBool("Running", false);
-            anim.SetBool("SJump", false);
-            anim.SetBool("RJump", false);
-            anim.SetBool("LJump", false);
-            anim.SetBool("Idle", true);
+            idle();
         }
 
         if (hanging.hangingOn == true && playerMovement.jumping)
@@ -57,12 +60,10 @@ public class PlayerAnimationsController : MonoBehaviour
             hanging.hangingOn = false;
             anim.SetBool("LJump", true);
         }
-        else
+
         if (hanging.hangingOn == true)
         {
             anim.SetBool("Hanging", true);
-            anim.SetBool("LGrab", true);
-            anim.SetBool("Running", false);
             anim.SetBool("RJump", false);
             anim.SetBool("SJump", false);
             anim.SetBool("LJump", false);
@@ -71,13 +72,12 @@ public class PlayerAnimationsController : MonoBehaviour
             playerMovement.jumping = false;
         }
 
-        if (playerMovement.jumping == true && playerMovement.running == true && hanging.hangingOn == false)
+        if (playerMovement.jumping == true && playerMovement.running && hanging.hangingOn == false)
         {
-            anim.SetBool("Running", false);
             anim.SetBool("RJump", true);
             playerMovement.jumping = false;
         }
-        else if (playerMovement.jumping == true && playerMovement.running == false && hanging.hangingOn == false)
+        else if (playerMovement.jumping && playerMovement.running == false && hanging.hangingOn == false)
         {
             anim.SetBool("SJump", true);
         }

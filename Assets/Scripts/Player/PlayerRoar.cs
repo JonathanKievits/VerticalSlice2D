@@ -19,7 +19,7 @@ public class PlayerRoar : MonoBehaviour
         maxCharge = 100;
         currentCharge = 100;
         InvokeRepeating("Regenerate", 0.0f, 1.0f / regeneration);
-	}
+    }
 	
 	void Update ()
     {
@@ -27,6 +27,7 @@ public class PlayerRoar : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                StartCoroutine("RoarAniWait");
                 roaring = true;
                 currentCharge = 0;
             }
@@ -37,6 +38,13 @@ public class PlayerRoar : MonoBehaviour
     {
         if (currentCharge < maxCharge)
             currentCharge += 1;
+    }
+
+    IEnumerator RoarAniWait()
+    {
+        yield return new WaitForSeconds(0.75f);
+        roaring = false;
+        StopCoroutine("RoarAniWait");
     }
 
 }
