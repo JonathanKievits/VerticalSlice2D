@@ -17,22 +17,24 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == "Border")
+        {
+            SceneManager.LoadScene(0);
+        }
         if (other.tag == "Enemy")
         {
             Destroy(other.gameObject);
         }
         if (other.tag == "Danger")
         {
-            if ( currentHealth > 1)
+            if ( currentHealth >= 30)
             {
-                currentHealth -= 20;
+                currentHealth -= 25;
                 hurting = true;
             }
-            else if (currentHealth < 20)
+            else if (currentHealth <= 30)
             {
-                Destroy(this.gameObject);
                 SceneManager.LoadScene(0);
-
             }
         }
     }
@@ -43,8 +45,6 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 100f;
         }
-
-       // Debug.Log(currentHealth);
 
     }
 }
